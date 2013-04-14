@@ -1,18 +1,13 @@
-//
-//  OddCell.m
-//  CustomCell
-//
-//  Created by pawel on 13.04.2013.
-//  Copyright (c) 2013 Pawel. All rights reserved.
-//
-
 #import "OddCell.h"
 
-CGRect const FRAME_RECT = {10.0f,10.0f,20.0f,30.0f};
 
 @interface OddCell ()
 
 @property (nonatomic) CGFloat lineWidth;
+@property (nonatomic) CGFloat height;
+@property (nonatomic) CGFloat margin;
+@property (strong, nonatomic) NSMutableArray *rows;
+@property (strong, nonatomic) UIColor *color;
 
 @end
 
@@ -22,14 +17,16 @@ CGRect const FRAME_RECT = {10.0f,10.0f,20.0f,30.0f};
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
-        _lineWidth = 0.2f;
-        
-        _color = [UIColor blackColor];
-        
-        _height = 160;
+        [self setupCell];
     }
     return self;
+}
+
+- (void)setupCell {
+    _lineWidth = 0.2f;
+    _color = [UIColor blackColor];
+    _height = 160;
+    _margin = 5.0f;
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -39,9 +36,13 @@ CGRect const FRAME_RECT = {10.0f,10.0f,20.0f,30.0f};
     [self drawLine:CGPointMake(self.bounds.origin.x + 10.0f, self.bounds.origin.y + 55.0f) endPoint:CGPointMake(self.bounds.size.width - 10.0f, self.bounds.origin.y + 55.0f)];
         [self drawLine:CGPointMake(self.bounds.origin.x + 10.0f, self.bounds.origin.y + 105.0f) endPoint:CGPointMake(self.bounds.size.width - 10.0f, self.bounds.origin.y + 105.0f)];
     
-    [self drawText:CGPointMake(self.bounds.origin.x + 25.0f, self.bounds.origin.y + 23.0f) text:@"It's.."];
+    [self drawText:CGPointMake(self.bounds.origin.x + 25.0f, self.bounds.origin.y + 23.0f) text:@"Table view cell"];
     
     [self drawImage:CGPointMake(self.bounds.size.width - 60.0f, self.bounds.origin.y + 12.0f) image:[UIImage imageNamed:@"xcode.png"]];
+    
+}
+
+- (void)addRowWithRowHeight:(int)height {
     
 }
 

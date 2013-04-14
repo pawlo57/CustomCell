@@ -10,8 +10,4 @@
 
 @interface OddCell : UITableViewCell
 
-@property (strong, nonatomic) UIColor *color;
-
-@property (nonatomic) int height;
-
 @end

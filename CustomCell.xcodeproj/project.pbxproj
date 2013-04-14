@@ -119,11 +119,19 @@
 		E54EA13F1719FA87002A4A4D /* Custom Cell */ = {
 			isa = PBXGroup;
 			children = (
+				E563010B171B396E008A3D90 /* Entities */,
 				E54EA1401719FAD4002A4A4D /* OddCell.h */,
 				E54EA1411719FAD4002A4A4D /* OddCell.m */,
 				E54EA1431719FB55002A4A4D /* OddCell.xib */,
 			);
 			name = "Custom Cell";
+			sourceTree = "<group>";
+		};
+		E563010B171B396E008A3D90 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
