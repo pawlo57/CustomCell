@@ -18,9 +18,10 @@
 		E54EA1331719F826002A4A4D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E54EA1321719F826002A4A4D /* Default-568h@2x.png */; };
 		E54EA1361719F826002A4A4D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E54EA1351719F826002A4A4D /* ViewController.m */; };
 		E54EA1391719F826002A4A4D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54EA1371719F826002A4A4D /* ViewController.xib */; };
-		E54EA1421719FAD4002A4A4D /* OddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E54EA1411719FAD4002A4A4D /* OddCell.m */; };
-		E54EA1441719FB55002A4A4D /* OddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54EA1431719FB55002A4A4D /* OddCell.xib */; };
 		E5630109171B239D008A3D90 /* xcode.png in Resources */ = {isa = PBXBuildFile; fileRef = E5630108171B239D008A3D90 /* xcode.png */; };
+		E583F7EA171C96A90053015F /* PickupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E583F7E8171C96A90053015F /* PickupCell.m */; };
+		E583F7EB171C96A90053015F /* PickupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E583F7E9171C96A90053015F /* PickupCell.xib */; };
+		E583F7EE171C96BE0053015F /* PickupRow.m in Sources */ = {isa = PBXBuildFile; fileRef = E583F7ED171C96BE0053015F /* PickupRow.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,10 +41,12 @@
 		E54EA1341719F826002A4A4D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		E54EA1351719F826002A4A4D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E54EA1381719F826002A4A4D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
-		E54EA1401719FAD4002A4A4D /* OddCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OddCell.h; sourceTree = "<group>"; };
-		E54EA1411719FAD4002A4A4D /* OddCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OddCell.m; sourceTree = "<group>"; };
-		E54EA1431719FB55002A4A4D /* OddCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OddCell.xib; sourceTree = "<group>"; };
 		E5630108171B239D008A3D90 /* xcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = xcode.png; path = "../../../iProjects data/xcode.png"; sourceTree = "<group>"; };
+		E583F7E7171C96A90053015F /* PickupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickupCell.h; sourceTree = "<group>"; };
+		E583F7E8171C96A90053015F /* PickupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickupCell.m; sourceTree = "<group>"; };
+		E583F7E9171C96A90053015F /* PickupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickupCell.xib; sourceTree = "<group>"; };
+		E583F7EC171C96BE0053015F /* PickupRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickupRow.h; sourceTree = "<group>"; };
+		E583F7ED171C96BE0053015F /* PickupRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickupRow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,10 +122,10 @@
 		E54EA13F1719FA87002A4A4D /* Custom Cell */ = {
 			isa = PBXGroup;
 			children = (
+				E583F7E7171C96A90053015F /* PickupCell.h */,
+				E583F7E8171C96A90053015F /* PickupCell.m */,
+				E583F7E9171C96A90053015F /* PickupCell.xib */,
 				E563010B171B396E008A3D90 /* Entities */,
-				E54EA1401719FAD4002A4A4D /* OddCell.h */,
-				E54EA1411719FAD4002A4A4D /* OddCell.m */,
-				E54EA1431719FB55002A4A4D /* OddCell.xib */,
 			);
 			name = "Custom Cell";
 			sourceTree = "<group>";
@@ -130,6 +133,8 @@
 		E563010B171B396E008A3D90 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				E583F7EC171C96BE0053015F /* PickupRow.h */,
+				E583F7ED171C96BE0053015F /* PickupRow.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -191,8 +196,8 @@
 				E54EA1311719F826002A4A4D /* Default@2x.png in Resources */,
 				E54EA1331719F826002A4A4D /* Default-568h@2x.png in Resources */,
 				E54EA1391719F826002A4A4D /* ViewController.xib in Resources */,
-				E54EA1441719FB55002A4A4D /* OddCell.xib in Resources */,
 				E5630109171B239D008A3D90 /* xcode.png in Resources */,
+				E583F7EB171C96A90053015F /* PickupCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,7 +227,8 @@
 				E54EA1291719F825002A4A4D /* main.m in Sources */,
 				E54EA12D1719F825002A4A4D /* AppDelegate.m in Sources */,
 				E54EA1361719F826002A4A4D /* ViewController.m in Sources */,
-				E54EA1421719FAD4002A4A4D /* OddCell.m in Sources */,
+				E583F7EA171C96A90053015F /* PickupCell.m in Sources */,
+				E583F7EE171C96BE0053015F /* PickupRow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
