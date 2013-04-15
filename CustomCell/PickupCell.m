@@ -1,17 +1,19 @@
-#import "OddCell.h"
+#import "PickupCell.h"
+#import "PickupRow.h"
 
 
-@interface OddCell ()
+@interface PickupCell ()
 
 @property (nonatomic) CGFloat lineWidth;
 @property (nonatomic) CGFloat height;
 @property (nonatomic) CGFloat margin;
+@property (nonatomic) CGFloat cornerRadius;
 @property (strong, nonatomic) NSMutableArray *rows;
 @property (strong, nonatomic) UIColor *color;
 
 @end
 
-@implementation OddCell
+@implementation PickupCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -26,24 +28,45 @@
     _lineWidth = 0.2f;
     _color = [UIColor blackColor];
     _height = 160;
-    _margin = 5.0f;
+    _margin = 10.0f;
+    _cornerRadius = 5.0f;
+    _rows = [[NSMutableArray alloc] init];
+    
+    [self addRowWithRowHeight:55.0f];
 }
 
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
-    [self drawRoundRectWithColor:_color];
-    [self drawLine:CGPointMake(self.bounds.origin.x + 10.0f, self.bounds.origin.y + 55.0f) endPoint:CGPointMake(self.bounds.size.width - 10.0f, self.bounds.origin.y + 55.0f)];
-        [self drawLine:CGPointMake(self.bounds.origin.x + 10.0f, self.bounds.origin.y + 105.0f) endPoint:CGPointMake(self.bounds.size.width - 10.0f, self.bounds.origin.y + 105.0f)];
+    [self drawContent];
+
+    [self drawRows];
+}
+
+- (void)drawRows {
+    for(PickupRow *row in _rows){
+        [row drawContent];
+    }
+}
+
+- (void)drawContent {
+    [self drawRoundRectWithColor:_color margin:_margin cornerRadius:_cornerRadius];
     
-    [self drawText:CGPointMake(self.bounds.origin.x + 25.0f, self.bounds.origin.y + 23.0f) text:@"Table view cell"];
+    //[self drawLine:CGPointMake(self.bounds.origin.x + 10.0f, self.bounds.origin.y + 55.0f) endPoint:CGPointMake(self.bounds.size.width - 10.0f, self.bounds.origin.y + 55.0f)];
+    //[self drawLine:CGPointMake(self.bounds.origin.x + 10.0f, self.bounds.origin.y + 105.0f) endPoint:CGPointMake(self.bounds.size.width - 10.0f, self.bounds.origin.y + 105.0f)];
     
-    [self drawImage:CGPointMake(self.bounds.size.width - 60.0f, self.bounds.origin.y + 12.0f) image:[UIImage imageNamed:@"xcode.png"]];
+    //[self drawText:CGPointMake(self.bounds.origin.x + 25.0f, self.bounds.origin.y + 23.0f) text:@"Table view cell"];
     
+    // [self drawImage:CGPointMake(self.bounds.size.width - 60.0f, self.bounds.origin.y + 12.0f) image:[UIImage imageNamed:@"xcode.png"]];
+}
+
+- (CGRect)cellBoundsWithMargin:(CGFloat)margin {
+    return CGRectMake(self.bounds.origin.x + margin, self.bounds.origin.y + margin, self.bounds.size.width - margin, self.bounds.size.height - margin);
 }
 
 - (void)addRowWithRowHeight:(int)height {
-    
+    PickupRow *row = [[PickupRow alloc] initWithHeight:height rowIndex:0 Frame:[self cellBoundsWithMargin:_margin] lineWidth:_lineWidth];
+    [_rows addObject:row];
 }
 
 - (void)drawText:(CGPoint)location text:(NSString*)text {
@@ -55,9 +78,9 @@
 }
 
 
-- (void)drawRoundRectWithColor: (UIColor*)color {
+- (void)drawRoundRectWithColor: (UIColor*)color margin:(CGFloat)margin cornerRadius:(CGFloat)cornerRadius {
     UIBezierPath *path =
-    [UIBezierPath bezierPathWithRoundedRect:CGRectMake(10.0f, 10.0f, self.frame.size.width - 20.0f, self.frame.size.height - 20.0f) cornerRadius:5.0f];
+    [UIBezierPath bezierPathWithRoundedRect:CGRectMake(10.0f, margin, self.frame.size.width - 2 * margin, self.frame.size.height - 2 * margin) cornerRadius:cornerRadius];
     [color setStroke];
     
     [path setLineWidth:_lineWidth];

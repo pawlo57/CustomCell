@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OddCell : UITableViewCell
+@interface PickupCell : UITableViewCell
 
 @end

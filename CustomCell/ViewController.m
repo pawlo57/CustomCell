@@ -1,13 +1,7 @@
-//
-//  ViewController.m
-//  CustomCell
-//
-//  Created by pawel on 13.04.2013.
-//  Copyright (c) 2013 Pawel. All rights reserved.
-//
-
 #import "ViewController.h"
-#import "OddCell.h"
+#import "PickupCell.h"
+
+NSString *const CELL_IDENTIFIER = @"Cell";
 
 @interface ViewController ()
 
@@ -18,7 +12,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView registerNib:[UINib nibWithNibName:@"OddCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
+    
+    //support for ios 6.0
+    if([self.tableView respondsToSelector:@selector(registerClass:forCellReuseIdentifier:)]){
+        [self.tableView registerClass:[PickupCell class] forCellReuseIdentifier:CELL_IDENTIFIER];
+    }
 	
 }
 
@@ -39,12 +37,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"Cell";
-    
-    OddCell *cell = (OddCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    PickupCell *cell = (PickupCell*)[tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER];
     
     if(cell == nil){
-        cell = [[OddCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[PickupCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFIER];
     }
     
     return cell;
