@@ -16,7 +16,7 @@
 
 @implementation PickupRow
 
-- (id)initWithDelegate:(PickupRow*)delegate rowHeight:(CGFloat)height rowIndex:(int)index Frame:(CGRect)frame lineWidth:(CGFloat)width {
+- (id)initWithHeight:(CGFloat)height rowIndex:(int)index Frame:(CGRect)frame lineWidth:(CGFloat)width {
     self = [super init];
     
     if(self){
