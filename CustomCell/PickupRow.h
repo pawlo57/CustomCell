@@ -12,10 +12,13 @@
 
 @property (nonatomic) int index;
 @property (nonatomic) CGRect frame;
-//@///property (nonatomic) CGFloat height;
+@property (nonatomic) CGFloat lineWidth;
+@property (weak, nonatomic) UIColor *color;
 
 - (void)drawContent;
 
-- (id)initWithHeight:(CGFloat)height rowIndex:(int)index Frame:(CGRect)frame lineWidth:(CGFloat)width;
+- (id)initWithHeight:(CGFloat)height rowIndex:(int)index Frame:(CGRect)frame lineWidth:(CGFloat)lineWidth;
+
+- (void)addImage:(UIImage*)image;
 
 @end

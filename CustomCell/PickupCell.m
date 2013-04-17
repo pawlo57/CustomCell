@@ -1,6 +1,11 @@
 #import "PickupCell.h"
 #import "PickupRow.h"
+#import "GDraw.h"
 
+CGFloat const CELL_MARGIN = 10.0f;
+CGFloat const CELL_CORNER_RADIUS = 5.0f;
+CGFloat const CELL_LINE_WIDTH_DEFAULT = 0.2f;
+CGFloat const CELL_LINE_WIDTH_SELECTED = 1.0f;
 
 @interface PickupCell ()
 
@@ -10,6 +15,8 @@
 @property (nonatomic) CGFloat cornerRadius;
 @property (strong, nonatomic) NSMutableArray *rows;
 @property (strong, nonatomic) UIColor *color;
+
+@property (strong, nonatomic) GDraw *gDraw;
 
 @end
 
@@ -31,6 +38,7 @@
     _margin = 10.0f;
     _cornerRadius = 5.0f;
     _rows = [[NSMutableArray alloc] init];
+    _gDraw = [[GDraw alloc] init];
     
     [self addRowWithRowHeight:55.0f];
 }
@@ -45,13 +53,20 @@
 
 - (void)drawRows {
     for(PickupRow *row in _rows){
+        [row setColor:_color];
+        [row setLineWidth:_lineWidth];
         [row drawContent];
     }
 }
 
+- (void)setupRowsLineWidth:(CGFloat)width {
+    for (PickupRow *row in _rows){
+        row.lineWidth = width;
+    };
+}
+
 - (void)drawContent {
-    [self drawRoundRectWithColor:_color margin:_margin cornerRadius:_cornerRadius];
-    
+    [self.gDraw drawRoundRectWithColor:_color margin:CELL_MARGIN cornerRadius:CELL_CORNER_RADIUS lineWidth:_lineWidth frame:self.bounds isFill:NO];
     //[self drawLine:CGPointMake(self.bounds.origin.x + 10.0f, self.bounds.origin.y + 55.0f) endPoint:CGPointMake(self.bounds.size.width - 10.0f, self.bounds.origin.y + 55.0f)];
     //[self drawLine:CGPointMake(self.bounds.origin.x + 10.0f, self.bounds.origin.y + 105.0f) endPoint:CGPointMake(self.bounds.size.width - 10.0f, self.bounds.origin.y + 105.0f)];
     
@@ -66,6 +81,8 @@
 
 - (void)addRowWithRowHeight:(int)height {
     PickupRow *row = [[PickupRow alloc] initWithHeight:height rowIndex:0 Frame:[self cellBoundsWithMargin:_margin] lineWidth:_lineWidth];
+    [row setValue:self.gDraw forKey:@"gDraw"];
+    
     [_rows addObject:row];
 }
 
@@ -75,38 +92,6 @@
 
 - (void)drawImage: (CGPoint)location image: (UIImage*)image {
     [image drawInRect:CGRectMake(location.x, location.y, 40.0f, 40.0f)];
-}
-
-
-- (void)drawRoundRectWithColor: (UIColor*)color margin:(CGFloat)margin cornerRadius:(CGFloat)cornerRadius {
-    UIBezierPath *path =
-    [UIBezierPath bezierPathWithRoundedRect:CGRectMake(10.0f, margin, self.frame.size.width - 2 * margin, self.frame.size.height - 2 * margin) cornerRadius:cornerRadius];
-    [color setStroke];
-    
-    [path setLineWidth:_lineWidth];
-    
-    [path stroke];
-    
-}
-
-- (void)drawLine: (CGPoint)startPoint endPoint:(CGPoint)endPoint {
-    CGMutablePathRef path = CGPathCreateMutable();
-    
-    CGPathMoveToPoint(path, NULL, startPoint.x,startPoint.y);
-    CGPathAddLineToPoint(path, NULL, endPoint.x, endPoint.y);
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(context);
-    
-    CGContextAddPath(context, path);
-    
-    CGContextSetLineWidth(context, _lineWidth);
-    
-    CGContextDrawPath(context,kCGPathStroke);
-    
-    CGContextRestoreGState(context);
-    
-    CGPathRelease(path);
 }
 
 - (void)drawRect {
@@ -147,8 +132,6 @@
         
         return;
     }
-    //[super setSelected:selected animated:animated];
-    
     _color = [UIColor redColor];
     _lineWidth = 1.0f;
     

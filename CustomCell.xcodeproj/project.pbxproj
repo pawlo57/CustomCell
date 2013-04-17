@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E51005BF171D489900FE9143 /* GDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = E51005BE171D489900FE9143 /* GDraw.m */; };
 		E54EA11D1719F825002A4A4D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E54EA11C1719F825002A4A4D /* UIKit.framework */; };
 		E54EA11F1719F825002A4A4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E54EA11E1719F825002A4A4D /* Foundation.framework */; };
 		E54EA1211719F825002A4A4D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E54EA1201719F825002A4A4D /* CoreGraphics.framework */; };
@@ -19,11 +20,12 @@
 		E54EA1361719F826002A4A4D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E54EA1351719F826002A4A4D /* ViewController.m */; };
 		E54EA1391719F826002A4A4D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54EA1371719F826002A4A4D /* ViewController.xib */; };
 		E54EA1421719FAD4002A4A4D /* PickupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E54EA1411719FAD4002A4A4D /* PickupCell.m */; };
-		E54EA1441719FB55002A4A4D /* PickupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54EA1431719FB55002A4A4D /* PickupCell.xib */; };
 		E5DA42B7171BE26100A9C231 /* PickupRow.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DA42B6171BE26100A9C231 /* PickupRow.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E51005BD171D489900FE9143 /* GDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDraw.h; sourceTree = "<group>"; };
+		E51005BE171D489900FE9143 /* GDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDraw.m; sourceTree = "<group>"; };
 		E54EA1181719F825002A4A4D /* CustomCell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomCell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E54EA11C1719F825002A4A4D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E54EA11E1719F825002A4A4D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -42,7 +44,6 @@
 		E54EA1381719F826002A4A4D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		E54EA1401719FAD4002A4A4D /* PickupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickupCell.h; sourceTree = "<group>"; };
 		E54EA1411719FAD4002A4A4D /* PickupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickupCell.m; sourceTree = "<group>"; };
-		E54EA1431719FB55002A4A4D /* PickupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickupCell.xib; sourceTree = "<group>"; };
 		E5DA42B5171BE26100A9C231 /* PickupRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickupRow.h; sourceTree = "<group>"; };
 		E5DA42B6171BE26100A9C231 /* PickupRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickupRow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,6 +62,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E51005BC171D486B00FE9143 /* GDraw */ = {
+			isa = PBXGroup;
+			children = (
+				E51005BD171D489900FE9143 /* GDraw.h */,
+				E51005BE171D489900FE9143 /* GDraw.m */,
+			);
+			name = GDraw;
+			sourceTree = "<group>";
+		};
 		E54EA10D1719F825002A4A4D = {
 			isa = PBXGroup;
 			children = (
@@ -119,10 +129,10 @@
 		E54EA13F1719FA87002A4A4D /* PickupCell */ = {
 			isa = PBXGroup;
 			children = (
+				E51005BC171D486B00FE9143 /* GDraw */,
 				E563010B171B396E008A3D90 /* Entities */,
 				E54EA1401719FAD4002A4A4D /* PickupCell.h */,
 				E54EA1411719FAD4002A4A4D /* PickupCell.m */,
-				E54EA1431719FB55002A4A4D /* PickupCell.xib */,
 			);
 			name = PickupCell;
 			sourceTree = "<group>";
@@ -192,7 +202,6 @@
 				E54EA1311719F826002A4A4D /* Default@2x.png in Resources */,
 				E54EA1331719F826002A4A4D /* Default-568h@2x.png in Resources */,
 				E54EA1391719F826002A4A4D /* ViewController.xib in Resources */,
-				E54EA1441719FB55002A4A4D /* PickupCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +217,7 @@
 				E54EA1361719F826002A4A4D /* ViewController.m in Sources */,
 				E54EA1421719FAD4002A4A4D /* PickupCell.m in Sources */,
 				E5DA42B7171BE26100A9C231 /* PickupRow.m in Sources */,
+				E51005BF171D489900FE9143 /* GDraw.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
