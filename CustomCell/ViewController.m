@@ -5,6 +5,8 @@ NSString *const CELL_IDENTIFIER = @"Cell";
 
 @interface ViewController ()
 
+@property (nonatomic) CGFloat cellHeight;
+
 @end
 
 @implementation ViewController
@@ -17,7 +19,13 @@ NSString *const CELL_IDENTIFIER = @"Cell";
     if([self.tableView respondsToSelector:@selector(registerClass:forCellReuseIdentifier:)]){
         [self.tableView registerClass:[PickupCell class] forCellReuseIdentifier:CELL_IDENTIFIER];
     }
-	
+	[self setupCellHeight];
+}
+
+- (void)setupCellHeight {
+    PickupCell *cell = [[PickupCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFIER];
+    
+    self.cellHeight = cell.height;
 }
 
 - (void)didReceiveMemoryWarning
@@ -29,7 +37,7 @@ NSString *const CELL_IDENTIFIER = @"Cell";
 #pragma mark Table View DataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 160;
+    return self.cellHeight;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -1,11 +1,3 @@
-//
-//  GDraw.m
-//  CustomCell
-//
-//  Created by Paweł Czechowski on 16.04.2013.
-//  Copyright (c) 2013 Pawel. All rights reserved.
-//
-
 #import "GDraw.h"
 
 @implementation GDraw
@@ -44,6 +36,45 @@
     CGContextRestoreGState(context);
     
     CGPathRelease(path);
+}
+
+- (void)drawImage:(UIImage*)image inRect:(CGRect)imageRect {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSaveGState(context);
+    CGContextDrawImage(context, imageRect, image.CGImage);
+    CGContextRestoreGState(context);
+}
+
+- (void)drawRect:(CGRect)rect withColor:(UIColor*)color {
+    CGMutablePathRef path = CGPathCreateMutable();
+    
+    CGPathAddRect(path, NULL, rect);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    
+    CGContextAddPath(context, path);
+    [color setStroke];
+    CGContextSetLineWidth(context, 0.5f);
+    
+    CGContextDrawPath(context, kCGPathStroke);
+ 
+    CGContextRestoreGState(context);
+    
+    CGPathRelease(path);
+ }
+
+- (void)drawText:(NSString*)text atPoint:(CGPoint)point {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    const char *charText = [text cStringUsingEncoding:[NSString defaultCStringEncoding]];
+    
+    CGContextSaveGState(context);
+    CGContextSelectFont(context, "Courier", 14.0f, kCGEncodingMacRoman);
+    CGContextSetFillColor(context, CGColorGetComponents([UIColor redColor].CGColor));
+    CGContextShowTextAtPoint(context, point.x, point.y, charText, strlen(charText));
+    CGContextRestoreGState(context);
 }
 
 

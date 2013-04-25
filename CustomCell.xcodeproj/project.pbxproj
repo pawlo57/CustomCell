@@ -20,6 +20,9 @@
 		E54EA1361719F826002A4A4D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E54EA1351719F826002A4A4D /* ViewController.m */; };
 		E54EA1391719F826002A4A4D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54EA1371719F826002A4A4D /* ViewController.xib */; };
 		E54EA1421719FAD4002A4A4D /* PickupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E54EA1411719FAD4002A4A4D /* PickupCell.m */; };
+		E59C53DF1729124300F4D2A0 /* icon_destination_point.png in Resources */ = {isa = PBXBuildFile; fileRef = E59C53DE1729124300F4D2A0 /* icon_destination_point.png */; };
+		E59C53E417291E7200F4D2A0 /* PickupImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E59C53E317291E7200F4D2A0 /* PickupImage.m */; };
+		E59C53E8172949E800F4D2A0 /* PickupText.m in Sources */ = {isa = PBXBuildFile; fileRef = E59C53E7172949E800F4D2A0 /* PickupText.m */; };
 		E5DA42B7171BE26100A9C231 /* PickupRow.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DA42B6171BE26100A9C231 /* PickupRow.m */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +47,11 @@
 		E54EA1381719F826002A4A4D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		E54EA1401719FAD4002A4A4D /* PickupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickupCell.h; sourceTree = "<group>"; };
 		E54EA1411719FAD4002A4A4D /* PickupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickupCell.m; sourceTree = "<group>"; };
+		E59C53DE1729124300F4D2A0 /* icon_destination_point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_destination_point.png; path = "../../../IprojectData/FPickup/drawable-hdpi/icon_destination_point.png"; sourceTree = "<group>"; };
+		E59C53E217291E7200F4D2A0 /* PickupImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickupImage.h; sourceTree = "<group>"; };
+		E59C53E317291E7200F4D2A0 /* PickupImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickupImage.m; sourceTree = "<group>"; };
+		E59C53E6172949E800F4D2A0 /* PickupText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickupText.h; sourceTree = "<group>"; };
+		E59C53E7172949E800F4D2A0 /* PickupText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickupText.m; sourceTree = "<group>"; };
 		E5DA42B5171BE26100A9C231 /* PickupRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickupRow.h; sourceTree = "<group>"; };
 		E5DA42B6171BE26100A9C231 /* PickupRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickupRow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,6 +123,7 @@
 		E54EA1231719F825002A4A4D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E59C53DD1729121300F4D2A0 /* Images */,
 				E54EA1241719F825002A4A4D /* CustomCell-Info.plist */,
 				E54EA1251719F825002A4A4D /* InfoPlist.strings */,
 				E54EA1281719F825002A4A4D /* main.m */,
@@ -140,10 +149,46 @@
 		E563010B171B396E008A3D90 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				E59C53E5172949CF00F4D2A0 /* PickupText */,
+				E59C53E117291E5200F4D2A0 /* PickupImage */,
+				E59C53E017291E4600F4D2A0 /* PickupRow */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		E59C53DD1729121300F4D2A0 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				E59C53DE1729124300F4D2A0 /* icon_destination_point.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		E59C53E017291E4600F4D2A0 /* PickupRow */ = {
+			isa = PBXGroup;
+			children = (
 				E5DA42B5171BE26100A9C231 /* PickupRow.h */,
 				E5DA42B6171BE26100A9C231 /* PickupRow.m */,
 			);
-			name = Entities;
+			name = PickupRow;
+			sourceTree = "<group>";
+		};
+		E59C53E117291E5200F4D2A0 /* PickupImage */ = {
+			isa = PBXGroup;
+			children = (
+				E59C53E217291E7200F4D2A0 /* PickupImage.h */,
+				E59C53E317291E7200F4D2A0 /* PickupImage.m */,
+			);
+			name = PickupImage;
+			sourceTree = "<group>";
+		};
+		E59C53E5172949CF00F4D2A0 /* PickupText */ = {
+			isa = PBXGroup;
+			children = (
+				E59C53E6172949E800F4D2A0 /* PickupText.h */,
+				E59C53E7172949E800F4D2A0 /* PickupText.m */,
+			);
+			name = PickupText;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +247,7 @@
 				E54EA1311719F826002A4A4D /* Default@2x.png in Resources */,
 				E54EA1331719F826002A4A4D /* Default-568h@2x.png in Resources */,
 				E54EA1391719F826002A4A4D /* ViewController.xib in Resources */,
+				E59C53DF1729124300F4D2A0 /* icon_destination_point.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +264,8 @@
 				E54EA1421719FAD4002A4A4D /* PickupCell.m in Sources */,
 				E5DA42B7171BE26100A9C231 /* PickupRow.m in Sources */,
 				E51005BF171D489900FE9143 /* GDraw.m in Sources */,
+				E59C53E417291E7200F4D2A0 /* PickupImage.m in Sources */,
+				E59C53E8172949E800F4D2A0 /* PickupText.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

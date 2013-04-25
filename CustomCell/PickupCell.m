@@ -1,5 +1,7 @@
 #import "PickupCell.h"
 #import "PickupRow.h"
+#import "PickupImage.h"
+#import "PickupText.h"
 #import "GDraw.h"
 
 CGFloat const CELL_MARGIN = 10.0f;
@@ -10,11 +12,10 @@ CGFloat const CELL_LINE_WIDTH_SELECTED = 1.0f;
 @interface PickupCell ()
 
 @property (nonatomic) CGFloat lineWidth;
-@property (nonatomic) CGFloat height;
-@property (nonatomic) CGFloat margin;
 @property (nonatomic) CGFloat cornerRadius;
 @property (strong, nonatomic) NSMutableArray *rows;
 @property (strong, nonatomic) UIColor *color;
+@property (nonatomic) int currentRowIndex;
 
 @property (strong, nonatomic) GDraw *gDraw;
 
@@ -27,27 +28,46 @@ CGFloat const CELL_LINE_WIDTH_SELECTED = 1.0f;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self setupCell];
+        [self setupRows];
     }
     return self;
 }
 
+#pragma mark Setup Cell
+
 - (void)setupCell {
+    _isDebugMode = NO;
     _lineWidth = 0.2f;
     _color = [UIColor blackColor];
-    _height = 160;
-    _margin = 10.0f;
+    _currentRowIndex = 0;
+    _margin = CELL_MARGIN;
+    _height = 2*CELL_MARGIN;
     _cornerRadius = 5.0f;
     _rows = [[NSMutableArray alloc] init];
     _gDraw = [[GDraw alloc] init];
-    
-    [self addRowWithRowHeight:55.0f];
 }
+
+- (void)setupRows {
+    UIImage *destinationImage = [UIImage imageNamed:@"icon_destination_point.png"];
+    
+    PickupImage *testImage = [[PickupImage alloc] initWithImage:destinationImage imageName:@"icon_destination_point.png" frame:CGRectMake(55, 10,destinationImage.size.width, destinationImage.size.height)];
+    NSMutableArray *images = [[NSMutableArray alloc] initWithObjects:testImage, nil];
+    
+    PickupText *pickupText = [[PickupText alloc] initWithText:@"Test uhuhuhuiuhuhuhuhuhuhuhuh kokojihu oooioji okokokoihi ojooihioo okokojij ojojojih oojiojij ijijijihu jijijij" font:[UIFont fontWithName:@"Futura" size:12.0f] rect:CGRectMake(150.0f, 5.0f, 120.0f, 40.0f) textAligment:NSTextAlignmentJustified lineBreakMode:NSLineBreakByCharWrapping];
+    
+    NSMutableArray *texts = [[NSMutableArray alloc] initWithObjects:pickupText, nil];
+    
+    [self addRowWithRowHeight:50.0f images:images texts:texts];
+    [self addRowWithRowHeight:50.0f images:images texts:texts];
+    [self addRowWithRowHeight:50.f images:images texts:texts];
+}
+
+#pragma mark Draw Content
 
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
     [self drawContent];
-
     [self drawRows];
 }
 
@@ -67,23 +87,24 @@ CGFloat const CELL_LINE_WIDTH_SELECTED = 1.0f;
 
 - (void)drawContent {
     [self.gDraw drawRoundRectWithColor:_color margin:CELL_MARGIN cornerRadius:CELL_CORNER_RADIUS lineWidth:_lineWidth frame:self.bounds isFill:NO];
-    //[self drawLine:CGPointMake(self.bounds.origin.x + 10.0f, self.bounds.origin.y + 55.0f) endPoint:CGPointMake(self.bounds.size.width - 10.0f, self.bounds.origin.y + 55.0f)];
-    //[self drawLine:CGPointMake(self.bounds.origin.x + 10.0f, self.bounds.origin.y + 105.0f) endPoint:CGPointMake(self.bounds.size.width - 10.0f, self.bounds.origin.y + 105.0f)];
-    
-    //[self drawText:CGPointMake(self.bounds.origin.x + 25.0f, self.bounds.origin.y + 23.0f) text:@"Table view cell"];
-    
-    // [self drawImage:CGPointMake(self.bounds.size.width - 60.0f, self.bounds.origin.y + 12.0f) image:[UIImage imageNamed:@"xcode.png"]];
 }
 
 - (CGRect)cellBoundsWithMargin:(CGFloat)margin {
     return CGRectMake(self.bounds.origin.x + margin, self.bounds.origin.y + margin, self.bounds.size.width - margin, self.bounds.size.height - margin);
 }
 
-- (void)addRowWithRowHeight:(int)height {
-    PickupRow *row = [[PickupRow alloc] initWithHeight:height rowIndex:0 Frame:[self cellBoundsWithMargin:_margin] lineWidth:_lineWidth];
+- (CGRect)rowFrameWithIndex:(int)index rowHeight:(int)rowHeight {
+    CGRect cellBounds = [self cellBoundsWithMargin:_margin];
+    return CGRectMake(cellBounds.origin.x, cellBounds.origin.y + (rowHeight * index), cellBounds.size.width, cellBounds.size.height);
+}
+
+- (void)addRowWithRowHeight:(int)height images:(NSMutableArray*)pickupImages texts:(NSMutableArray*)texts{
+    PickupRow *row = [[PickupRow alloc] initWithHeight:height rowIndex:self.currentRowIndex Frame:[self cellBoundsWithMargin:_margin] lineWidth:_lineWidth images:pickupImages texts:texts];
     [row setValue:self.gDraw forKey:@"gDraw"];
-    
+    [row setValue:self forKey:@"delegate"];
     [_rows addObject:row];
+    _height += height;
+    _currentRowIndex++;
 }
 
 - (void)drawText:(CGPoint)location text:(NSString*)text {
@@ -94,33 +115,7 @@ CGFloat const CELL_LINE_WIDTH_SELECTED = 1.0f;
     [image drawInRect:CGRectMake(location.x, location.y, 40.0f, 40.0f)];
 }
 
-- (void)drawRect {
-    [[UIColor brownColor] set];
-    
-    //get current graphics context
-    CGContextRef currentContext = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(currentContext);
-    
-    //set line join
-    CGContextSetLineJoin(currentContext, kCGLineJoinRound);
-    
-    //set line width
-    CGContextSetLineWidth(currentContext, 0.5f);
-    
-    //starting point
-    CGContextMoveToPoint(currentContext, self.frame.origin.x + 5.0f, self.frame.origin.y + 5.0f);
-    
-    //add the end point
-    CGContextAddLineToPoint(currentContext, self.frame.size.width - 5.0f, self.frame.origin.y + 5.0f);
-    
-    //add another point
-    CGContextAddLineToPoint(currentContext, self.frame.size.width - 5.0f ,self.frame.size.height - 5.0f);
-    
-    //draw line
-    CGContextStrokePath(currentContext);
-    
-    CGContextRestoreGState(currentContext);
-}
+#pragma mark Cell Selection
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

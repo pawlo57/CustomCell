@@ -1,11 +1,3 @@
-//
-//  PickupRow.h
-//  CustomCell
-//
-//  Created by Paweł Czechowski on 15.04.2013.
-//  Copyright (c) 2013 Pawel. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 
 @interface PickupRow : NSObject
@@ -17,8 +9,8 @@
 
 - (void)drawContent;
 
-- (id)initWithHeight:(CGFloat)height rowIndex:(int)index Frame:(CGRect)frame lineWidth:(CGFloat)lineWidth;
+- (id)initWithHeight:(CGFloat)height rowIndex:(int)index Frame:(CGRect)frame lineWidth:(CGFloat)lineWidth images:(NSMutableArray*)images texts:(NSMutableArray*)texts;
 
-- (void)addImage:(UIImage*)image;
+- (void)addImage:(UIImage*)image withFrame:(CGRect)frame imageName:(NSString*)imageName;
 
 @end
