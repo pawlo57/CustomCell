@@ -2,6 +2,8 @@
 
 @implementation GDraw
 
+#pragma mark Draw Round Rectangle
+
 - (void)drawRoundRectWithColor: (UIColor*)color margin:(CGFloat)margin cornerRadius:(CGFloat)cornerRadius lineWidth:(CGFloat)lineWidth frame:(CGRect)frame isFill:(BOOL)isFill {
     UIBezierPath *path =
     [UIBezierPath bezierPathWithRoundedRect:CGRectMake(margin, margin, frame.size.width - 2 * margin, frame.size.height - 2 * margin) cornerRadius:cornerRadius];
@@ -17,6 +19,8 @@
         [path stroke];
     }
 }
+
+#pragma mark Draw Line
 
 - (void)drawLine: (CGPoint)startPoint endPoint:(CGPoint)endPoint lineWidth:(CGFloat)lineWidth {
     CGMutablePathRef path = CGPathCreateMutable();
@@ -38,6 +42,8 @@
     CGPathRelease(path);
 }
 
+#pragma mark Draw Image
+
 - (void)drawImage:(UIImage*)image inRect:(CGRect)imageRect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -45,6 +51,8 @@
     CGContextDrawImage(context, imageRect, image.CGImage);
     CGContextRestoreGState(context);
 }
+
+#pragma mark Draw Rectangle
 
 - (void)drawRect:(CGRect)rect withColor:(UIColor*)color {
     CGMutablePathRef path = CGPathCreateMutable();
@@ -64,6 +72,8 @@
     
     CGPathRelease(path);
  }
+
+#pragma mark Draw Text
 
 - (void)drawText:(NSString*)text atPoint:(CGPoint)point {
     CGContextRef context = UIGraphicsGetCurrentContext();

@@ -50,19 +50,20 @@ CGFloat const CELL_LINE_WIDTH_SELECTED = 1.0f;
 - (void)setupRows {
     UIImage *destinationImage = [UIImage imageNamed:@"icon_destination_point.png"];
     
-    PickupImage *testImage = [[PickupImage alloc] initWithImage:destinationImage imageName:@"icon_destination_point.png" frame:CGRectMake(55, 10,destinationImage.size.width, destinationImage.size.height)];
-    NSMutableArray *images = [[NSMutableArray alloc] initWithObjects:testImage, nil];
+    PickupImage *testImage = [[PickupImage alloc] initWithImage:destinationImage frame:CGRectMake(55, 10,destinationImage.size.width, destinationImage.size.height)];
+    NSArray *images = [[NSMutableArray alloc] initWithObjects:testImage, nil];
     
     PickupText *pickupText = [[PickupText alloc] initWithText:@"Test uhuhuhuiuhuhuhuhuhuhuhuh kokojihu oooioji okokokoihi ojooihioo okokojij ojojojih oojiojij ijijijihu jijijij" font:[UIFont fontWithName:@"Futura" size:12.0f] rect:CGRectMake(150.0f, 5.0f, 120.0f, 40.0f) textAligment:NSTextAlignmentJustified lineBreakMode:NSLineBreakByCharWrapping];
     
-    NSMutableArray *texts = [[NSMutableArray alloc] initWithObjects:pickupText, nil];
+    NSArray *texts = [[NSMutableArray alloc] initWithObjects:pickupText, nil];
     
     [self addRowWithRowHeight:50.0f images:images texts:texts];
     [self addRowWithRowHeight:50.0f images:images texts:texts];
     [self addRowWithRowHeight:50.f images:images texts:texts];
 }
 
-#pragma mark Draw Content
+
+#pragma mark Draw Rect
 
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
@@ -70,6 +71,8 @@ CGFloat const CELL_LINE_WIDTH_SELECTED = 1.0f;
     [self drawContent];
     [self drawRows];
 }
+
+#pragma mark Draw Rows
 
 - (void)drawRows {
     for(PickupRow *row in _rows){
@@ -79,12 +82,9 @@ CGFloat const CELL_LINE_WIDTH_SELECTED = 1.0f;
     }
 }
 
-- (void)setupRowsLineWidth:(CGFloat)width {
-    for (PickupRow *row in _rows){
-        row.lineWidth = width;
-    };
-}
+#pragma mark Draw Cell Content
 
+//draw cell content like rounded frame (it's not draw rows)
 - (void)drawContent {
     [self.gDraw drawRoundRectWithColor:_color margin:CELL_MARGIN cornerRadius:CELL_CORNER_RADIUS lineWidth:_lineWidth frame:self.bounds isFill:NO];
 }
@@ -93,26 +93,21 @@ CGFloat const CELL_LINE_WIDTH_SELECTED = 1.0f;
     return CGRectMake(self.bounds.origin.x + margin, self.bounds.origin.y + margin, self.bounds.size.width - margin, self.bounds.size.height - margin);
 }
 
+//setting row frame depending on row index
 - (CGRect)rowFrameWithIndex:(int)index rowHeight:(int)rowHeight {
     CGRect cellBounds = [self cellBoundsWithMargin:_margin];
     return CGRectMake(cellBounds.origin.x, cellBounds.origin.y + (rowHeight * index), cellBounds.size.width, cellBounds.size.height);
 }
 
-- (void)addRowWithRowHeight:(int)height images:(NSMutableArray*)pickupImages texts:(NSMutableArray*)texts{
+#pragma mark Add Cell Row
+
+- (void)addRowWithRowHeight:(int)height images:(NSArray*)pickupImages texts:(NSArray*)texts{
     PickupRow *row = [[PickupRow alloc] initWithHeight:height rowIndex:self.currentRowIndex Frame:[self cellBoundsWithMargin:_margin] lineWidth:_lineWidth images:pickupImages texts:texts];
     [row setValue:self.gDraw forKey:@"gDraw"];
     [row setValue:self forKey:@"delegate"];
     [_rows addObject:row];
     _height += height;
     _currentRowIndex++;
-}
-
-- (void)drawText:(CGPoint)location text:(NSString*)text {
-    [text drawAtPoint:location withFont:[UIFont fontWithName:@"Futura" size:14.0f]];
-}
-
-- (void)drawImage: (CGPoint)location image: (UIImage*)image {
-    [image drawInRect:CGRectMake(location.x, location.y, 40.0f, 40.0f)];
 }
 
 #pragma mark Cell Selection
@@ -123,12 +118,12 @@ CGFloat const CELL_LINE_WIDTH_SELECTED = 1.0f;
         _color = [UIColor blackColor];
         
         [self setNeedsDisplayInRect:self.bounds];
-        _lineWidth = 0.2f;
+        _lineWidth = CELL_LINE_WIDTH_DEFAULT;
         
         return;
     }
     _color = [UIColor redColor];
-    _lineWidth = 1.0f;
+    _lineWidth = CELL_LINE_WIDTH_SELECTED;
     
     [self setNeedsDisplayInRect:self.bounds];
 }

@@ -9,8 +9,8 @@
 @property (weak, nonatomic) GDraw *gDraw;
 @property (weak, nonatomic) PickupCell *delegate;
 
-@property (strong, nonatomic) NSMutableArray *images;
-@property (strong, nonatomic) NSMutableArray *texts;
+@property (strong, nonatomic) NSArray *images;
+@property (strong, nonatomic) NSArray *texts;
 
 @end
 
@@ -33,6 +33,8 @@
     return (self.delegate.height - self.delegate.margin > self.frame.origin.y + self.frame.size.height);
 }
 
+#pragma mark Draw Whole Cell Content
+
 - (void)drawContent {
     [self drawText:CGPointMake(self.frame.origin.x + 25.0f, self.frame.origin.y + (self.frame.size.height / 2) - 7.0f) text:@"Test"];
     [self drawLines];
@@ -41,17 +43,23 @@
     NSLog(@"Row frame: %f, %f ,%f, %f Index: %d", self.frame.origin.x,self.frame.origin.y,self.frame.size.width,self.frame.size.height, _index);
 }
 
+#pragma mark Draw Row Lines
+
 - (void)drawLines {
     if([self canDrawBottomLine]){
         [self.gDraw drawLine:CGPointMake(self.frame.origin.x, self.frame.origin.y + self.frame.size.height) endPoint:CGPointMake(self.frame.size.width, self.frame.origin.y + self.frame.size.height) lineWidth:_lineWidth];
     }
 }
 
+#pragma mark Draw Cell Images
+
 - (void)drawImages {
     for(PickupImage *image in self.images){
         [self.gDraw drawImage:image.image inRect:CGRectMake(self.frame.origin.x + image.imageFrame.origin.x, self.frame.origin.y + image.imageFrame.origin.y, image.imageFrame.size.width, image.imageFrame.size.height)];
     }
 }
+
+#pragma mark Draw Cell Texts
 
 - (void)drawTexts {
     for(PickupText *textToDraw in self.texts){
@@ -64,6 +72,8 @@
     }
 }
 
+#pragma mark Draw Debug Mode Rectangle
+
 - (void)drawDebugRect:(CGRect)rect {
     [self.gDraw drawRect:rect withColor:[UIColor redColor]];
 }
@@ -71,11 +81,6 @@
 - (void)drawText:(CGPoint)location text:(NSString*)text {
 }
 
-- (void)addImage:(UIImage*)image withFrame:(CGRect)frame imageName:(NSString*)imageName {
-    if(image != nil && !CGRectIsNull(frame)){
-        [self.images addObject:image];
-    }
-}
 
 
 

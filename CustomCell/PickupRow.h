@@ -9,8 +9,6 @@
 
 - (void)drawContent;
 
-- (id)initWithHeight:(CGFloat)height rowIndex:(int)index Frame:(CGRect)frame lineWidth:(CGFloat)lineWidth images:(NSMutableArray*)images texts:(NSMutableArray*)texts;
-
-- (void)addImage:(UIImage*)image withFrame:(CGRect)frame imageName:(NSString*)imageName;
+- (id)initWithHeight:(CGFloat)height rowIndex:(int)index Frame:(CGRect)frame lineWidth:(CGFloat)lineWidth images:(NSArray*)images texts:(NSArray*)texts;
 
 @end
