@@ -16,7 +16,7 @@
 
 @implementation PickupRow
 
-- (id)initWithHeight:(CGFloat)height rowIndex:(int)index Frame:(CGRect)frame lineWidth:(CGFloat)lineWidth images:(NSMutableArray*)images texts:(NSMutableArray*)texts {
+- (id)initWithHeight:(CGFloat)height rowIndex:(int)index Frame:(CGRect)frame lineWidth:(CGFloat)lineWidth images:(NSArray*)images texts:(NSArray*)texts {
     self = [super init];
     
     if(self){
@@ -29,21 +29,19 @@
     return self;
 }
 
-- (BOOL)canDrawBottomLine {
-    return (self.delegate.height - self.delegate.margin > self.frame.origin.y + self.frame.size.height);
-}
-
 #pragma mark Draw Whole Cell Content
 
 - (void)drawContent {
-    [self drawText:CGPointMake(self.frame.origin.x + 25.0f, self.frame.origin.y + (self.frame.size.height / 2) - 7.0f) text:@"Test"];
     [self drawLines];
     [self drawImages];
     [self drawTexts];
-    NSLog(@"Row frame: %f, %f ,%f, %f Index: %d", self.frame.origin.x,self.frame.origin.y,self.frame.size.width,self.frame.size.height, _index);
 }
 
 #pragma mark Draw Row Lines
+
+- (BOOL)canDrawBottomLine {
+    return (self.delegate.height - self.delegate.margin > self.frame.origin.y + self.frame.size.height);
+}
 
 - (void)drawLines {
     if([self canDrawBottomLine]){
@@ -77,15 +75,5 @@
 - (void)drawDebugRect:(CGRect)rect {
     [self.gDraw drawRect:rect withColor:[UIColor redColor]];
 }
-
-- (void)drawText:(CGPoint)location text:(NSString*)text {
-}
-
-
-
-
-
-
-
 
 @end

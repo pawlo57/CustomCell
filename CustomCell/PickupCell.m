@@ -51,11 +51,11 @@ CGFloat const CELL_LINE_WIDTH_SELECTED = 1.0f;
     UIImage *destinationImage = [UIImage imageNamed:@"icon_destination_point.png"];
     
     PickupImage *testImage = [[PickupImage alloc] initWithImage:destinationImage frame:CGRectMake(55, 10,destinationImage.size.width, destinationImage.size.height)];
-    NSArray *images = [[NSMutableArray alloc] initWithObjects:testImage, nil];
+    NSArray *images = [[NSArray alloc] initWithObjects:testImage, nil];
     
     PickupText *pickupText = [[PickupText alloc] initWithText:@"Test uhuhuhuiuhuhuhuhuhuhuhuh kokojihu oooioji okokokoihi ojooihioo okokojij ojojojih oojiojij ijijijihu jijijij" font:[UIFont fontWithName:@"Futura" size:12.0f] rect:CGRectMake(150.0f, 5.0f, 120.0f, 40.0f) textAligment:NSTextAlignmentJustified lineBreakMode:NSLineBreakByCharWrapping];
     
-    NSArray *texts = [[NSMutableArray alloc] initWithObjects:pickupText, nil];
+    NSArray *texts = [[NSArray alloc] initWithObjects:pickupText, nil];
     
     [self addRowWithRowHeight:50.0f images:images texts:texts];
     [self addRowWithRowHeight:50.0f images:images texts:texts];
